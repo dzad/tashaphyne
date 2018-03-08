@@ -12,7 +12,7 @@ Utility functions used by to prepare an arabic text to search and index.
 @version:0.3
 """
 import re
-import tashaphyne.arabic_const as arabconst
+import arabic_const as arabconst
 
 ######################################################################
 #{ Indivudual Functions
@@ -55,7 +55,7 @@ def strip_tatweel(text):
     @return: return a striped text.
     @rtype: unicode.
     """
-    return re.sub(u'[%s]' % arabconst.TATWEEL, '', text)
+    return re.sub(u'[{}]'.format(arabconst.TATWEEL), '', text)
 
 
 #--------------------------------------
@@ -100,7 +100,7 @@ def normalize_lamalef(text):
     @rtype: unicode.
     """
     return arabconst.LAMALEFAT_PAT.sub(\
-      u'%s%s'%(arabconst.LAM, arabconst.ALEF), text)
+      u'{}{}'.format(arabconst.LAM, arabconst.ALEF), text)
 
 #--------------------------------------
 def normalize_spellerrors(text):
@@ -123,8 +123,8 @@ def normalize_spellerrors(text):
     @return: return a converted text.
     @rtype: unicode.
     """
-    text = re.sub(u'[%s]' % arabconst.TEH_MARBUTA, arabconst.HEH, text)
-    return re.sub(u'[%s]' % arabconst.ALEF_MAKSURA, arabconst.YEH, text)
+    text = re.sub(u'[{}]'.format(arabconst.TEH_MARBUTA), arabconst.HEH, text)
+    return re.sub(u'[{}]'.format(arabconst.ALEF_MAKSURA), arabconst.YEH, text)
 
 ######################################################################
 #{ Normalize One Function
